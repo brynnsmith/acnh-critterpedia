@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="This is where your description goes">
+    	<meta name="keywords" content="one, two, three">
+
+		<title>ACNH Seasonal Bug, Fish & Sea Creature Guide</title>
+
+		<!-- external CSS link -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+	<section>
+		<section>
+			<h1>ACNH Seasonal Bug, Fish & Sea Creature Guide</h1>
+			<section>
+				<form>
+					<h2>Which creatures are available each month?</h2>
+					<label for="hemisphere">Which hemisphere are you in?</label>
+					<select id="hemisphere" name="whichHemisphere">
+						<option value="northern">Northern</option>
+						<option value="southern">Southern</option>
+					</select>
+					<label for="month">What month is it?</label>
+					<select id="month" name="month">
+						<option value="jan">January</option>
+						<option value="feb">February</option>
+						<option value="mar">March</option>
+						<option value="apr">April</option>
+						<option value="may">May</option>
+						<option value="jun">June</option>
+						<option value="jul">July</option>
+						<option value="aug">August</option>
+						<option value="sept">September</option>
+						<option value="oct">October</option>
+						<option value="nov">November</option>
+						<option value="dec">December</option>
+					</select>  
+					<select id="critterType2" name="critterType">
+						<option data-critter id ="bugs" value="bugs">Bugs</option>
+						<option data-critter id ="fish" value="fish">Fish</option>
+						<option data-critter id="seaCreatures" value="seaCreatures">Sea Creatures</option>
+					</select>
+					<button type="button" name="button" class="filterCreatures">Check What is Available</button>
+				</form>
+			</section>
+			
+
+			<section class="allCreatureLookUp">
+				<form>
+					<h2>Choose a type to view all specimens in ACNH</h2>
+					<select id="critterType" name="critterType">
+						<option data-critter id ="bugs" value="bugs">Bugs</option>
+						<option data-critter id ="fish" value="fish">Fish</option>
+				  		<option data-critter id="seaCreatures" value="seaCreatures">Sea Creatures</option>
+			  		</select>
+					<button type="button" name="button" class="returnAllCreatures">View All</button>
+				</form>
+			</section>
+			
+		</section>
+
+
+
+		<section class="availableCritters">
+			<h2 class="availableTypeTitle"></h2>
+			<form>
+				<h3 class="searchType"></h3>
+				<input type="text" class="searchInput">
+			</form>
+			<section class="availableCards">
+				<section class="availableCard">
+					<section>
+						<h2 class="name"></h2>
+						<h3 class="catchPhrase"></h3>
+						<img class="image" src="" alt="">
+						<h3 class="location"></h3>
+						<h3 class="seaSpeed"></h3>
+						<h3 class="timeAvailable"></h3>
+						<h3 class="monthsAvailable"></h3>
+						<h3 class="rarity"></h3>
+						<button type="button" class="moreInfo">More Info</button>
+						<div class="moreInfoContent">
+							<h3 class="museumPhrase"></h3>
+							<h3 class="price"></h3>
+							<h3 class="priceNPC"></h3>
+						</div>
+					</section>
+				</section>
+			</section>
+		</section>
+		
+
+	</section>
+
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
