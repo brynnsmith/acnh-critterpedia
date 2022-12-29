@@ -20,6 +20,7 @@ async function getFetch(){
 
 
     document.querySelector('.searchInput').addEventListener('input', autocompleteSearch)
+          
 
         for (let i = 0; i < data.length; i++) {
           const monthsArray = getListOfMonthsAvail()
@@ -167,10 +168,12 @@ async function getFetch(){
         }
 
         ///////// REMOVE ALL CARDS UPON BUTTON PRESS AGAIN //////////
-        let element = document.getElementById("idOfParent");
-          while (element.firstChild) {
+        let element = document.querySelector('.availableCards');
+    if (element.firstChild) {
+      while (element.firstChild) {
           element.removeChild(element.firstChild);
-        }
+      }
+    }
 
 
         //////// RETURN CARDS BASED ON MONTH AVAIL /////////
