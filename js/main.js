@@ -16,7 +16,8 @@ async function getFetch(){
 
     url = getCreatureType()
     document.body.style.backgroundImage = "none"
-    if (document.querySelector('.availableCards').children.length > 1) {
+    const availCards = document.querySelector('.availableCards')
+    if (availCards.children.length > 1) {
       const clear = await clearCards()
     }
     const res = await fetch(url)
@@ -83,14 +84,21 @@ async function getFetch(){
           // Unique data per type to place in card
             // Bugs
             if (url.includes('bugs')) {
+              rarity.style.display = "inline"
+              NPCPrice.style.display = "inline"
               NPCPrice.innerText = `Flick's Price: ${data[i]["price-flick"]}`
+              seaSpeed.style.display = "none"
             // Fish
             } else if (url.includes('fish')) {
+              rarity.style.display = "inline"
+              NPCPrice.style.display = "inline"
               NPCPrice.innerText = `CJ's Price: ${data[i]["price-cj"]}`
+              seaSpeed.style.display = "none"
             // Sea Creatures
             } else if (url.includes('sea')) {
               NPCPrice.style.display = "none"
               location.innerText = "Location: Sea"
+              seaSpeed.style.display = "inline"
               seaSpeed.innerText = `Speed: ${data[i].speed}`
               rarity.style.display = "none"
             }
@@ -175,8 +183,8 @@ async function getFetch(){
 
         ///////// REMOVE ALL CARDS UPON BUTTON PRESS AGAIN //////////
         async function clearCards() {
-          while (document.querySelector('.availableCards').children.length > 1) {
-            document.querySelector('.availableCards').removeChild(document.querySelector('.availableCards').firstChild);
+          while (availCards.children.length > 1) {
+            availCards.removeChild(availCards.firstChild);
           }
         }
         
