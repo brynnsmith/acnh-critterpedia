@@ -12,8 +12,13 @@ document.querySelector('.returnAllCreatures').addEventListener('click', getFetch
 // Fetch data from ACNH Api
 async function getFetch(){
   try {
+
+
     url = getCreatureType()
     document.body.style.backgroundImage = "none"
+    if (document.querySelector('.availableCards').children.length > 1) {
+      const clear = await clearCards()
+    }
     const res = await fetch(url)
     const data = await res.json()
     console.log(data)
@@ -84,6 +89,7 @@ async function getFetch(){
               NPCPrice.innerText = `CJ's Price: ${data[i]["price-cj"]}`
             // Sea Creatures
             } else if (url.includes('sea')) {
+              NPCPrice.style.display = "none"
               location.innerText = "Location: Sea"
               seaSpeed.innerText = `Speed: ${data[i].speed}`
               rarity.style.display = "none"
@@ -168,13 +174,12 @@ async function getFetch(){
         }
 
         ///////// REMOVE ALL CARDS UPON BUTTON PRESS AGAIN //////////
-        let element = document.querySelector('.availableCards');
-    if (element.firstChild) {
-      while (element.firstChild) {
-          element.removeChild(element.firstChild);
-      }
-    }
-
+        async function clearCards() {
+          while (document.querySelector('.availableCards').children.length > 1) {
+            document.querySelector('.availableCards').removeChild(document.querySelector('.availableCards').firstChild);
+          }
+        }
+        
 
         //////// RETURN CARDS BASED ON MONTH AVAIL /////////
 
