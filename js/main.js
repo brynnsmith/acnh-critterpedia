@@ -12,14 +12,17 @@ document.querySelector('.returnAllCreatures').addEventListener('click', getFetch
 // Fetch data from ACNH Api
 async function getFetch(){
   try {
-
-
-    url = getCreatureType()
+    // Remove initial background styling
     document.body.style.backgroundImage = "none"
+    
+    // Clear existing cards if previously queried
     const availCards = document.querySelector('.availableCards')
     if (availCards.children.length > 1) {
       const clear = await clearCards()
     }
+
+    // Get Creature type to fetch url and return data
+    url = getCreatureType()
     const res = await fetch(url)
     const data = await res.json()
     console.log(data)
@@ -27,8 +30,10 @@ async function getFetch(){
 
     document.querySelector('.searchInput').addEventListener('input', autocompleteSearch)
           
+        // Loop through data to return a card for each data entry available
 
         for (let i = 0; i < data.length; i++) {
+          // Create list of months available for the entry
           const monthsArray = getListOfMonthsAvail()
 
           // Returns clone of card for each item in the array
@@ -105,10 +110,8 @@ async function getFetch(){
             
             // Function to map months from ACNH format
             function getListOfMonthsAvail() {
-
               let rangeAvail = data[i].availability["month-northern"]
               const monthsAvail = []
-
               const months = {
                 1 : "January",
                 2 : "February",
@@ -156,6 +159,13 @@ async function getFetch(){
             }
         }
 
+        // Remove all cards if previously queried before showing new cards
+        async function clearCards() {
+          while (availCards.children.length > 1) {
+            availCards.removeChild(availCards.firstChild);
+          }
+        }
+
         // More Info button expandable section
         let moreInfo = document.querySelectorAll(".moreInfo")
         for (let i = 0; i < moreInfo.length; i++) {
@@ -177,16 +187,10 @@ async function getFetch(){
           const namesArray = data.map((el => el.name["name-USen"]))
           let input = document.querySelector(".searchInput").value
           console.log(input)
-          let result = namesArray.filter(el => el.includes(input))
+          let result = data.filter(el => el.name["name-USen"].includes(input))
           console.log(result)
         }
 
-        ///////// REMOVE ALL CARDS UPON BUTTON PRESS AGAIN //////////
-        async function clearCards() {
-          while (availCards.children.length > 1) {
-            availCards.removeChild(availCards.firstChild);
-          }
-        }
         
 
         //////// RETURN CARDS BASED ON MONTH AVAIL /////////
