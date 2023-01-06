@@ -5,6 +5,7 @@ const selectCritterType = document.getElementById('critterType')
 const titleType = document.querySelector('.availableTypeTitle')
 
 let url
+let filteredSearch
 
 // Event Listeners
 document.querySelector('.returnAllCreatures').addEventListener('click', getFetch)
@@ -27,7 +28,6 @@ async function getFetch(){
     const data = await res.json()
     console.log(data)
 
-
     document.querySelector('.searchInput').addEventListener('input', autocompleteSearch)
           
         // Loop through data to return a card for each data entry available
@@ -35,7 +35,6 @@ async function getFetch(){
         for (let i = 0; i < data.length; i++) {
           // Create list of months available for the entry
           const monthsArray = getListOfMonthsAvail()
-
           // Returns clone of card for each item in the array
           const node = document.querySelector('.availableCard')
           const cloneCard = node.cloneNode(true)
@@ -187,7 +186,7 @@ async function getFetch(){
           const namesArray = data.map((el => el.name["name-USen"]))
           let input = document.querySelector(".searchInput").value
           console.log(input)
-          let result = data.filter(el => el.name["name-USen"].includes(input))
+          const result = data.filter(el => el.name["name-USen"].includes(input))
           console.log(result)
         }
 
