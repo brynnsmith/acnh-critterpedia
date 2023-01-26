@@ -8,10 +8,12 @@ let url
 let filteredSearch
 
 // Event Listeners
-document.querySelector('.returnAllCreatures').addEventListener('click', getFetch)
+document.querySelector('.returnAllCreatures').addEventListener('click', getAllOfType)
+
+document.querySelector('.clear').addEventListener('click', clearSearch)
 
 // Fetch data from ACNH Api
-async function getFetch(){
+async function getAllOfType(){
   try {
     // Remove initial background styling
     document.body.style.backgroundImage = "none"
@@ -158,13 +160,6 @@ async function getFetch(){
             }
         }
 
-        // Remove all cards if previously queried before showing new cards
-        async function clearCards() {
-          while (availCards.children.length > 1) {
-            availCards.removeChild(availCards.firstChild);
-          }
-        }
-
         // More Info button expandable section
         let moreInfo = document.querySelectorAll(".moreInfo")
         for (let i = 0; i < moreInfo.length; i++) {
@@ -179,18 +174,6 @@ async function getFetch(){
             }
           });
         } 
-
-        ////////////// MODIFY THIS FUNCTION I BUILT TO FILTER CARDS INSTEAD ////////////////
-          
-        function autocompleteSearch() {
-          const namesArray = data.map((el => el.name["name-USen"]))
-          let input = document.querySelector(".searchInput").value
-          console.log(input)
-          const result = data.filter(el => el.name["name-USen"].includes(input))
-          console.log(result)
-        }
-
-        
 
         //////// RETURN CARDS BASED ON MONTH AVAIL /////////
 
@@ -221,5 +204,46 @@ function getCreatureType(){
   } else if (selectCritterType.value === 'seaCreatures') {
     titleType.innerText = "Sea Creatures"
     return url = 'https://acnhapi.com/v1a/sea'
+  }
+}
+
+
+// Remove all cards if previously queried before showing new cards
+
+async function clearCards() {
+  const cards = document.querySelector('.availableCards')
+  while (cards.children.length > 1) {
+    cards.removeChild(cards.firstChild);
+  }
+}
+
+// Filter all available cards by search 
+          
+function autocompleteSearch() {
+  const cards = document.querySelectorAll('.availableCard')
+  let input = document.querySelector(".searchInput").value
+
+  if (!input) {
+    for (let i = 2; i < cards.length; i++) {
+      cards[i].style.display = 'block'
+    }
+    // TODO: Fix bug with end items not showing (and instead show at front)
+  } else {
+    for (let i = 0; i < cards.length; i++) {
+    const name = cards[i].querySelector('.name').innerText.toLowerCase()
+    if (name.includes(input)) {
+      cards[i].style.display = "block"
+    } else {
+      cards[i].style.display = 'none'
+    }
+  }
+  }
+}
+
+// Clear search input
+function clearSearch() {
+  const cards = document.querySelectorAll('.availableCard')
+  for (let i = 2; i < cards.length; i++) {
+    cards[i].style.display = 'block'
   }
 }
