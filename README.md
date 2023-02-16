@@ -4,6 +4,6 @@ Seasonal critter guide for Animal Crossing New Horizons. Includes all fish, bugs
 ## Launguages Used
 HTML, CSS, JS
 
-## Optiizations
+## Optimizations
 Create a login system for users to track their collection digitally.
 
